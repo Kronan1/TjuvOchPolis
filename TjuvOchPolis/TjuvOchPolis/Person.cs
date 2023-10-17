@@ -18,7 +18,7 @@ namespace TjuvOchPolis
 
         public char Type { get; set; }
 
-        public static List<Person> CreateList()
+        public static List<Person> CreateList(char[,] board)
         {
             List<Person> persons = new List<Person>();
             for (int i = 0; i < 20; i++)
@@ -28,16 +28,19 @@ namespace TjuvOchPolis
                 {
                     case 0:
                         Police police = new Police();
+                        police.InitializePerson(board);
                         persons.Add(police);
                         break;
 
                     case 1:
                         Thief thief = new Thief();
+                        thief.InitializePerson(board);
                         persons.Add(thief);
                         break;
 
                     case 2:
                         Citizen citizen = new Citizen();
+                        citizen.InitializePerson(board);
                         persons.Add(citizen);
                         break;
                 }
@@ -45,6 +48,24 @@ namespace TjuvOchPolis
             return persons;
 
         }
+
+        public void InitializePerson(char[,] board)
+        {
+            Random rand = new Random();
+            X = rand.Next(0, board.GetLength(1));
+            Y = rand.Next(0, board.GetLength(0));
+
+
+
+        }
+
+        public Person()
+        {
+            Random random = new Random();
+            Direction = random.Next(0, 6);
+
+        }
+
 
     }
 }
