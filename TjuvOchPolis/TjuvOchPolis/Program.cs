@@ -4,7 +4,9 @@
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Tjuv och Polis");
+
+            List<Person> persons = Person.CreateList();
+
         }
     }
 }
