@@ -16,6 +16,8 @@ namespace TjuvOchPolis
 
         public char Type { get; set; }
 
+        public List<Person> PersonsMet { get; set; }
+
         public static List<Person> CreateList(char[,] board)
         {
             List<Person> persons = new List<Person>();
@@ -61,6 +63,7 @@ namespace TjuvOchPolis
         {
             Random random = new Random();
             Direction = random.Next(0, 6);
+            PersonsMet = new List<Person>();
 
         }
 

@@ -23,17 +23,57 @@ namespace TjuvOchPolis
                 newBoard[person.Y, person.X] = person.Type;
             }
 
-            return newBoard;   
+            return newBoard;
         }
 
-        public static void Move(List<Person> persons)
+        public static void Move(List<Person> persons, char[,] board)
         {
             for (int i = 0; i < persons.Count; i++)
             {
-                //switch ()
+                switch (persons[i].Direction)
+                {
+                    case 0:
+                        persons[i].X++;
+                        break;
+                    case 1:
+                        persons[i].X--;
+                        break;
+                    case 2:
+                        persons[i].Y++;
+                        break;
+                    case 3:
+                        persons[i].Y--;
+                        break;
+                    case 4:
+                        persons[i].Y++;
+                        persons[i].X++;
+                        break;
+                    case 5:
+                        persons[i].X--;
+                        persons[i].Y--;
+                        break;
+                }
+
+                if (persons[i].Y > board.GetLength(0) - 1)
+                {
+                    persons[i].Y = 0;
+                }
+                else if (persons[i].Y < 0)
+                {
+                    persons[i].Y = board.GetLength(0) - 1;
+                }
+
+                if (persons[i].X > board.GetLength(1) - 1)
+                {
+                    persons[i].X = 0;
+                }
+                else if (persons[i].X < 0)
+                {
+                    persons[i].X = board.GetLength(1) - 1;
+                }
+
             }
         }
-
         public static void DrawBoard(char[,] board)
         {
             for (int i = 0; i < board.GetLength(1) + 2; i++)
@@ -59,6 +99,41 @@ namespace TjuvOchPolis
                 Console.Write('=');
             }
             Console.WriteLine();
+
+        }
+
+        public static void CheckCollision(List<Person> persons)
+        {
+
+            for (int i = 0; i < persons.Count; i++)
+            {
+                persons[i].PersonsMet.Clear();
+                for (int j = 0; j > persons.Count; j++)
+                {
+
+                    if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
+                    {
+                        Helpers.CalculateColission(persons[i], persons[j]);
+                    }
+
+                }
+            }
+
+        }
+
+        public static void CalculateColission(Person person1, Person person2)
+        {
+            person1.PersonsMet.Add(person2);
+
+            //switch (person1.GetType())
+            //{
+
+            //    case Police:
+            //        int test = 0;
+            //        break;
+
+
+            //}
 
         }
     }

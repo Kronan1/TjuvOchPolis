@@ -11,13 +11,14 @@
             {
                 board = Helpers.UpdateBoard(board, persons);
                 Helpers.DrawBoard(board);
-                Helpers.Move(persons);
 
-                Thread.Sleep(2000);
+                //Thread.Sleep(1000);
                 Console.Clear();
+                Helpers.Move(persons, board);
+                Helpers.CheckCollision(persons);
             }
-         
-            
+
+
 
         }
     }
