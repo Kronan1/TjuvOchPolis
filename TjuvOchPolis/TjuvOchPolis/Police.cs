@@ -8,6 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Police : Person
     {
+        public List<Valuable> ConfiscatedLoot { get; set; }
 
         public Police() 
         {

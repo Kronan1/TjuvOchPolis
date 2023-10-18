@@ -14,8 +14,6 @@ namespace TjuvOchPolis
 
         public int Direction { get; set; }
 
-        public List<Valuable> Valuables { get; set; }
-
         public char Type { get; set; }
 
         public static List<Person> CreateList(char[,] board)

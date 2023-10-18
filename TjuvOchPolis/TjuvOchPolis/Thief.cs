@@ -8,12 +8,12 @@ namespace TjuvOchPolis
 {
     internal class Thief : Person
     {
+        public List<Valuable> Loot { get; set; }
 
         public Thief() 
-        
         {
             Type = 'T';
-        
+            
         }
     }
 }
