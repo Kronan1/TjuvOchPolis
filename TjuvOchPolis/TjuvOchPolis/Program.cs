@@ -5,18 +5,26 @@
         static void Main(string[] args)
         {
             char[,] board = new char[25, 100];
-            List<Person> persons = Person.CreateList(board);
+            List<string> nameList = Helpers.NameList();
+            List<Person> persons = Person.CreateList(board, nameList);
             Console.CursorVisible = false;
+            Interactions interactions = new Interactions();
+            
+
+          
 
             while (true)
             {
                 board = Helpers.UpdateBoard(board, persons);
                 Helpers.DrawBoard(board);
+                Console.WriteLine();
+                interactions.PrintConversations();
 
-                Thread.Sleep(10);
-                Console.Clear();
+                Thread.Sleep(500);
                 Helpers.Move(persons, board);
-                Helpers.CheckCollision(persons);
+                Helpers.CheckCollision(persons, interactions);
+                Console.Clear();
+
             }
 
 

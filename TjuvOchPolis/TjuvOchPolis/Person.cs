@@ -17,30 +17,39 @@ namespace TjuvOchPolis
         public char Type { get; set; }
 
         public List<Person> PersonsMet { get; set; }
+        public string Lastname { get; set; }
 
-        public static List<Person> CreateList(char[,] board)
+
+        public static List<Person> CreateList(char[,] board, List<string> nameList)
         {
             List<Person> persons = new List<Person>();
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 30; i++)
             {
                 Random rnd = new Random();
+                int nameNumber = rnd.Next(0, nameList.Count);
                 switch (rnd.Next(0, 3))
                 {
                     case 0:
                         Police police = new Police();
                         police.InitializePerson(board);
+                        police.Lastname = nameList[nameNumber];
+                        nameList.RemoveAt(nameNumber);
                         persons.Add(police);
                         break;
 
                     case 1:
                         Thief thief = new Thief();
                         thief.InitializePerson(board);
+                        thief.Lastname = nameList[nameNumber];
+                        nameList.RemoveAt(nameNumber);
                         persons.Add(thief);
                         break;
 
                     case 2:
                         Citizen citizen = new Citizen();
                         citizen.InitializePerson(board);
+                        citizen.Lastname = nameList[nameNumber];
+                        nameList.RemoveAt(nameNumber);
                         persons.Add(citizen);
                         break;
                 }
@@ -66,6 +75,8 @@ namespace TjuvOchPolis
             PersonsMet = new List<Person>();
 
         }
+
+
 
 
     }

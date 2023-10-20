@@ -106,18 +106,18 @@ namespace TjuvOchPolis
 
         }
 
-        public static void CheckCollision(List<Person> persons)
+        public static void CheckCollision(List<Person> persons, Interactions interactions)
         {
 
             for (int i = 0; i < persons.Count; i++)
             {
                 persons[i].PersonsMet.Clear();
-                for (int j = 0; j > persons.Count; j++)
+                for (int j = 0; j < persons.Count; j++)
                 {
-                    //Kollar om personerna har samma koordinater och om dom inte är samma person samt om dom redan har träffats:
+                    int test = 0;
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
                     {
-                        Helpers.CalculateColission(persons[i], persons[j]);
+                        Helpers.CalculateColission(persons[i], persons[j], interactions);
                     }
 
                 }
@@ -125,20 +125,121 @@ namespace TjuvOchPolis
 
         }
 
-        public static void CalculateColission(Person person1, Person person2)
+        public static void CalculateColission(Person person1, Person person2, Interactions interactions)
         {
             person1.PersonsMet.Add(person2);
+            person2.PersonsMet.Add(person1);
+            string conversation = "";
 
-            //switch (person1.GetType())
-            //{
+            if (person1 is Police)
+            {
+                if (person2 is Police)
+                {
+                    conversation = "Polis " + person1.Lastname + " säger hej till polis " +  person2.Lastname;
+                }
+                else if (person2 is Thief)
+                {
+                    conversation = "Polis " + person1.Lastname + " tittar misstänksamt på tjuven " + person2.Lastname;
+                }
+                else if (person2 is Citizen)
+                {
+                    conversation = "Polis " + person1.Lastname + " hälsar på medborgare " + person2.Lastname;
+                }
+            }
+            else if (person1 is Thief)
+            {
+                if (person2 is Police)
+                {
 
-            //    case Police:
-            //        int test = 0;
-            //        break;
+                }
+                else if (person2 is Thief)
+                {
 
+                }
+                else if (person2 is Citizen)
+                {
 
-            //}
+                }
+            }
+            else if (person1 is Citizen)
+            {
+                if (person2 is Police)
+                {
 
+                }
+                else if (person2 is Thief)
+                {
+
+                }
+                else if (person2 is Citizen)
+                {
+
+                }
+            }
+            
+            interactions.Conversations.Add(conversation);
+        }
+
+        public static List<string> NameList()
+        {
+            List<string> nameList = new List<string>()
+            {
+                "Andersson",
+                "Pettersson",
+                "Forsberg",
+                "Sedin",
+                "Bästerman",
+                "Karlsson",
+                "Sjödin",
+                "Ekman",
+                "Larsson",
+                "Lundqvist",
+                "Ali",
+                "Bengtsson",
+                "Hult",
+                "Johansson",
+                "Nilsson",
+                "Viberg",
+                "Varberg",
+                "Gustafsson",
+                "Fröjd",
+                "Lilja",
+                "Bergström",
+                "Ström",
+                "Strömberg",
+                "Lundberg",
+                "Ekdahl",
+                "Svensson",
+                "Isaksson",
+                "Arvidsson",
+                "Elm",
+                "Mellberg",
+                "Thelin",
+                "Stenberg",
+                "Bagge",
+                "Wahlgren",
+                "Ingrosso",
+                "Brolin",
+                "Alm",
+                "Berghagen",
+                "Book",
+                "Ulveus",
+                "Ibrahimovic",
+                "Eriksdotter",
+                "Uggla",
+                "Guldkula",
+                "Natt och dag",
+                "Von Ribbing",
+                "Hellström",
+                "Gadd",
+                "Hallin",
+                "Kling",
+                "Klang",
+                "Eastwood",
+                "Wagner"
+            };
+
+            return nameList;
         }
     }
 }
