@@ -10,6 +10,7 @@ namespace TjuvOchPolis
     {
         public static char[,] UpdateBoard(char[,] board, List<Person> persons)
         {
+            //Här rensar vi spelplanen
             char[,] newBoard = new char[board.GetLength(0), board.GetLength(1)];
             for (var i = 0; i < newBoard.GetLength(0); i++)
             {
@@ -18,6 +19,8 @@ namespace TjuvOchPolis
                     newBoard[i, j] = ' ';
                 }
             }
+
+            //Här sätter vi in nya personer på spelplanen 
             foreach (var person in persons)
             {
                 newBoard[person.Y, person.X] = person.Type;
@@ -54,6 +57,7 @@ namespace TjuvOchPolis
                         break;
                 }
 
+                //Ser till så att koden inte kraschar när en person går utanför spelplanen. Tänk snake
                 if (persons[i].Y > board.GetLength(0) - 1)
                 {
                     persons[i].Y = 0;
@@ -110,7 +114,7 @@ namespace TjuvOchPolis
                 persons[i].PersonsMet.Clear();
                 for (int j = 0; j > persons.Count; j++)
                 {
-
+                    //Kollar om personerna har samma koordinater och om dom inte är samma person samt om dom redan har träffats:
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
                     {
                         Helpers.CalculateColission(persons[i], persons[j]);
