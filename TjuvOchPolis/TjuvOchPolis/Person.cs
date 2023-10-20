@@ -23,7 +23,7 @@ namespace TjuvOchPolis
         public static List<Person> CreateList(char[,] board, List<string> nameList)
         {
             List<Person> persons = new List<Person>();
-            for (int i = 0; i < 30; i++)
+            for (int i = 0; i < 20; i++)
             {
                 Random rnd = new Random();
                 int nameNumber = rnd.Next(0, nameList.Count);

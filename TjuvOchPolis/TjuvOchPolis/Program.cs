@@ -10,11 +10,15 @@
             Console.CursorVisible = false;
             Interactions interactions = new Interactions();
             
-
+            //Console.ForegroundColor = ConsoleColor.Green;
           
 
             while (true)
             {
+                for (int i = 0; i < persons.Count; i++)
+                {
+                    persons[i].PersonsMet.Clear();
+                }
                 board = Helpers.UpdateBoard(board, persons);
                 Helpers.DrawBoard(board);
                 Console.WriteLine();

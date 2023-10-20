@@ -108,10 +108,10 @@ namespace TjuvOchPolis
 
         public static void CheckCollision(List<Person> persons, Interactions interactions)
         {
-
+           
             for (int i = 0; i < persons.Count; i++)
             {
-                persons[i].PersonsMet.Clear();
+                
                 for (int j = 0; j < persons.Count; j++)
                 {
                     int test = 0;
@@ -121,6 +121,8 @@ namespace TjuvOchPolis
                     }
 
                 }
+                
+                
             }
 
         }
@@ -150,30 +152,30 @@ namespace TjuvOchPolis
             {
                 if (person2 is Police)
                 {
-
+                    conversation = "Tjuv " + person1.Lastname + " säger hej till polis " + person2.Lastname;
                 }
                 else if (person2 is Thief)
                 {
-
+                    conversation = "Tjuv " + person1.Lastname + " fnissar åt tjuv " + person2.Lastname;
                 }
                 else if (person2 is Citizen)
                 {
-
+                    conversation = "Tjuv " + person1.Lastname + " rånar medborgare " + person2.Lastname;
                 }
             }
             else if (person1 is Citizen)
             {
                 if (person2 is Police)
                 {
-
+                    conversation = "Medborgare " + person1.Lastname + " säger hej till polis " + person2.Lastname;
                 }
                 else if (person2 is Thief)
                 {
-
+                    conversation = "Medborgare " + person1.Lastname + " blir rånad av tjuv " + person2.Lastname;
                 }
                 else if (person2 is Citizen)
                 {
-
+                    conversation = "Medborgare " + person1.Lastname + " hälsar på medborgare " + person2.Lastname;
                 }
             }
             
