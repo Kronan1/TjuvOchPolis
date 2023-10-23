@@ -10,10 +10,10 @@ namespace TjuvOchPolis
     {
         public List<Valuable> ConfiscatedLoot { get; set; }
 
-        public Police() 
+        public Police()
         {
             Type = 'P';
-        
+            ConfiscatedLoot = new List<Valuable>();
         }
 
         public override string Interact(Person person2)
@@ -22,8 +22,14 @@ namespace TjuvOchPolis
             {
                 return "Polis " + Lastname + " säger hej till polis " + person2.Lastname;
             }
-            else if (person2 is Thief)
+            else if (person2 is Thief thief)
             {
+                if (thief.Loot.Count > 0 && !thief.InJail)
+                {
+                    thief.InJail = true;
+                    thief.JailTime = DateTime.Now;
+                    return "Polis " + Lastname + " Hittar stöldgods hos tjuv " + thief.Lastname + " och arresterar den djäveln";
+                }
                 return "Polis " + Lastname + " tittar misstänksamt på tjuven " + person2.Lastname;
             }
             else if (person2 is Citizen)

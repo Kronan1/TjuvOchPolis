@@ -10,9 +10,12 @@ namespace TjuvOchPolis
     {
         public List<string> Conversations { get; set; }
 
+        public bool NewConversation { get; set; }
+
         public Interactions()
         {
             Conversations = new List<string>();
+            NewConversation = false;
         }
         public void PrintConversations()
         {
@@ -20,11 +23,16 @@ namespace TjuvOchPolis
             {
                 Console.WriteLine(conversation);
             }
+            if (NewConversation)
+            {
+                Thread.Sleep(3000);
+                NewConversation = false;
+            }
         }
 
         public void CheckListLength()
         {
-            int listLength = 10;
+            int listLength = 4;
 
             if (Conversations.Count > listLength)
             {

@@ -9,22 +9,21 @@
             List<Person> persons = Person.CreateList(board, nameList);
             Console.CursorVisible = false;
             Interactions interactions = new Interactions();
+
+            Jail jail = new Jail();
             
             //Console.ForegroundColor = ConsoleColor.Green;
           
 
             while (true)
             {
-                for (int i = 0; i < persons.Count; i++)
-                {
-                    persons[i].PersonsMet.Clear();
-                }
-                board = Helpers.UpdateBoard(board, persons);
+                board = Helpers.UpdateBoard(board, persons, jail);
                 Helpers.DrawBoard(board);
+                jail.DrawJail();
                 Console.WriteLine();
                 interactions.PrintConversations();
 
-                Thread.Sleep(100);
+                Thread.Sleep(10);
                 Helpers.Move(persons, board);
                 Helpers.CheckCollision(persons, interactions);
                 Console.Clear();

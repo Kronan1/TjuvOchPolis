@@ -8,7 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Helpers
     {
-        public static char[,] UpdateBoard(char[,] board, List<Person> persons)
+        public static char[,] UpdateBoard(char[,] board, List<Person> persons, Jail jail)
         {
             //Här rensar vi spelplanen
             char[,] newBoard = new char[board.GetLength(0), board.GetLength(1)];
@@ -23,9 +23,15 @@ namespace TjuvOchPolis
             //Här sätter vi in nya personer på spelplanen 
             foreach (var person in persons)
             {
-                newBoard[person.Y, person.X] = person.Type;
+                if (person is Thief thief && thief.InJail)
+                {
+                    jail.JailList.Add(thief);
+                }
+                else
+                {
+                    newBoard[person.Y, person.X] = person.Type;
+                }
             }
-
             return newBoard;
         }
 
@@ -108,13 +114,15 @@ namespace TjuvOchPolis
 
         public static void CheckCollision(List<Person> persons, Interactions interactions)
         {
-           
             for (int i = 0; i < persons.Count; i++)
             {
-                
+                persons[i].PersonsMet.Clear();
+            }
+
+            for (int i = 0; i < persons.Count; i++)
+            {       
                 for (int j = 0; j < persons.Count; j++)
                 {
-                    int test = 0;
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
                     {
                         Helpers.CalculateColission(persons[i], persons[j], interactions);
@@ -146,6 +154,7 @@ namespace TjuvOchPolis
                 conversation = person1.Interact(person2);
             }
             interactions.Conversations.Add(conversation);
+            interactions.NewConversation = true;
             interactions.CheckListLength();
         }
 

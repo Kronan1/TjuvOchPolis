@@ -16,10 +16,10 @@ namespace TjuvOchPolis
             Type = 'C';
             Valuables = new List<Valuable>()
             {
-                new Valuable("Watch"),
-                new Valuable("Keys"),
-                new Valuable("Phone"),
-                new Valuable("Money")
+                new Valuable("klocka"),
+                new Valuable("nycklar"),
+                new Valuable("mobil"),
+                new Valuable("pengar")
             };
         
         }
@@ -30,9 +30,15 @@ namespace TjuvOchPolis
             {
                 return "Medborgare " + Lastname + " säger hej till polis " + person2.Lastname;
             }
-            else if (person2 is Thief)
+            else if (person2 is Thief thief)
             {
-                return "Medborgare " + Lastname + " blir rånad av tjuv " + person2.Lastname;
+                if (Valuables.Count > 0)
+                {
+                    thief.Loot.Add(Valuables[0]);
+                    Valuables.RemoveAt(0);
+                    return "Medborgare " + Lastname + " blir rånad av tjuv " + thief.Lastname + " på dess " + thief.Loot[thief.Loot.Count - 1];
+                }
+                return "Medborgare " + Lastname + " tittar oroligt på tjuv " + thief.Lastname + " när denne rotar igenom hens tomma fickor";
             }
             else if (person2 is Citizen)
             {
