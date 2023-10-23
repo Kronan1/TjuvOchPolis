@@ -21,5 +21,20 @@ namespace TjuvOchPolis
                 Console.WriteLine(conversation);
             }
         }
+
+        public void CheckListLength()
+        {
+            int listLength = 10;
+
+            if (Conversations.Count > listLength)
+            {
+                int amountToRemove = Conversations.Count - listLength;
+
+                for(int i = 0; i < amountToRemove; i++)
+                {
+                    Conversations.RemoveAt(0);
+                }
+            }
+        }
     }
 }

@@ -76,7 +76,10 @@ namespace TjuvOchPolis
 
         }
 
-
+        public virtual string Interact(Person person2)
+        {
+            return "Error person";
+        }
 
 
     }

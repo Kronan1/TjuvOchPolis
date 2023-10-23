@@ -135,51 +135,18 @@ namespace TjuvOchPolis
 
             if (person1 is Police)
             {
-                if (person2 is Police)
-                {
-                    conversation = "Polis " + person1.Lastname + " säger hej till polis " +  person2.Lastname;
-                }
-                else if (person2 is Thief)
-                {
-                    conversation = "Polis " + person1.Lastname + " tittar misstänksamt på tjuven " + person2.Lastname;
-                }
-                else if (person2 is Citizen)
-                {
-                    conversation = "Polis " + person1.Lastname + " hälsar på medborgare " + person2.Lastname;
-                }
+                conversation = person1.Interact(person2);
             }
             else if (person1 is Thief)
             {
-                if (person2 is Police)
-                {
-                    conversation = "Tjuv " + person1.Lastname + " säger hej till polis " + person2.Lastname;
-                }
-                else if (person2 is Thief)
-                {
-                    conversation = "Tjuv " + person1.Lastname + " fnissar åt tjuv " + person2.Lastname;
-                }
-                else if (person2 is Citizen)
-                {
-                    conversation = "Tjuv " + person1.Lastname + " rånar medborgare " + person2.Lastname;
-                }
+                conversation = person1.Interact(person2);
             }
             else if (person1 is Citizen)
             {
-                if (person2 is Police)
-                {
-                    conversation = "Medborgare " + person1.Lastname + " säger hej till polis " + person2.Lastname;
-                }
-                else if (person2 is Thief)
-                {
-                    conversation = "Medborgare " + person1.Lastname + " blir rånad av tjuv " + person2.Lastname;
-                }
-                else if (person2 is Citizen)
-                {
-                    conversation = "Medborgare " + person1.Lastname + " hälsar på medborgare " + person2.Lastname;
-                }
+                conversation = person1.Interact(person2);
             }
-            
             interactions.Conversations.Add(conversation);
+            interactions.CheckListLength();
         }
 
         public static List<string> NameList()

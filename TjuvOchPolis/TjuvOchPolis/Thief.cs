@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,6 +15,23 @@ namespace TjuvOchPolis
         {
             Type = 'T';
             
+        }
+
+        public override string Interact(Person person2)
+        {
+            if (person2 is Police)
+            {
+                return "Tjuv " + Lastname + " säger hej till polis " + person2.Lastname;
+            }
+            else if (person2 is Thief)
+            {
+                return "Tjuv " + Lastname + " fnissar åt tjuv " + person2.Lastname;
+            }
+            else if (person2 is Citizen)
+            {
+                return "Tjuv " + Lastname + " rånar medborgare " + person2.Lastname;
+            }
+            return "Error tjuv";
         }
     }
 }

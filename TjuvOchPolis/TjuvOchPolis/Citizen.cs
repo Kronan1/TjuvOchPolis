@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -21,6 +22,23 @@ namespace TjuvOchPolis
                 new Valuable("Money")
             };
         
+        }
+
+        public override string Interact(Person person2)
+        {
+            if (person2 is Police)
+            {
+                return "Medborgare " + Lastname + " säger hej till polis " + person2.Lastname;
+            }
+            else if (person2 is Thief)
+            {
+                return "Medborgare " + Lastname + " blir rånad av tjuv " + person2.Lastname;
+            }
+            else if (person2 is Citizen)
+            {
+                return "Medborgare " + Lastname + " hälsar på medborgare " + person2.Lastname;
+            }
+            return "Error medborgare";
         }
     }
 }
