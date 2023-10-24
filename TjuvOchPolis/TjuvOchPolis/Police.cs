@@ -18,9 +18,9 @@ namespace TjuvOchPolis
 
         public override string Interact(Person person2)
         {
-            if (person2 is Police)
+            if (person2 is Police police)
             {
-                return "Polis " + Lastname + " säger hej till polis " + person2.Lastname;
+                return "Polis " + Lastname + " säger hej till polis " + police.Lastname;
             }
             else if (person2 is Thief thief)
             {
@@ -28,13 +28,15 @@ namespace TjuvOchPolis
                 {
                     thief.InJail = true;
                     thief.JailTime = DateTime.Now;
-                    return "Polis " + Lastname + " Hittar stöldgods hos tjuv " + thief.Lastname + " och arresterar den djäveln";
+                    ConfiscatedLoot.AddRange(thief.Loot);
+                    thief.Loot.Clear();
+                    return "Polis " + Lastname + " Hittar stöldgods hos tjuv " + thief.Lastname + " och arresterar samt tar stöldgodset";
                 }
-                return "Polis " + Lastname + " tittar misstänksamt på tjuven " + person2.Lastname;
+                return "Polis " + Lastname + " tittar misstänksamt på tjuven " + thief.Lastname;
             }
-            else if (person2 is Citizen)
+            else if (person2 is Citizen citizen)
             {
-                return "Polis " + Lastname + " hälsar på medborgare " + person2.Lastname;
+                return "Polis " + Lastname + " hälsar på medborgare " + citizen.Lastname;
             }
 
             return "Error polis";

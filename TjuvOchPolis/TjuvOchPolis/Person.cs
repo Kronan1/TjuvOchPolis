@@ -23,36 +23,69 @@ namespace TjuvOchPolis
         public static List<Person> CreateList(char[,] board, List<string> nameList)
         {
             List<Person> persons = new List<Person>();
-            for (int i = 0; i < 30; i++)
+            //for (int i = 0; i < 30; i++)
+            //{
+            //    Random rnd = new Random();
+            //    int nameNumber = rnd.Next(0, nameList.Count);
+            //    switch (rnd.Next(0, 3))
+            //    {
+            //        case 0:
+            //            Police police = new Police();
+            //            police.InitializePerson(board);
+            //            police.Lastname = nameList[nameNumber];
+            //            nameList.RemoveAt(nameNumber);
+            //            persons.Add(police);
+            //            break;
+
+            //        case 1:
+            //            Thief thief = new Thief();
+            //            thief.InitializePerson(board);
+            //            thief.Lastname = nameList[nameNumber];
+            //            nameList.RemoveAt(nameNumber);
+            //            persons.Add(thief);
+            //            break;
+
+            //        case 2:
+            //            Citizen citizen = new Citizen();
+            //            citizen.InitializePerson(board);
+            //            citizen.Lastname = nameList[nameNumber];
+            //            nameList.RemoveAt(nameNumber);
+            //            persons.Add(citizen);
+            //            break;
+            //    }
+            //}
+            Random rnd = new Random();
+            int nameNumber = 0;
+            for (int i = 0; i < 10; i++)
             {
-                Random rnd = new Random();
-                int nameNumber = rnd.Next(0, nameList.Count);
-                switch (rnd.Next(0, 3))
-                {
-                    case 0:
-                        Police police = new Police();
-                        police.InitializePerson(board);
-                        police.Lastname = nameList[nameNumber];
-                        nameList.RemoveAt(nameNumber);
-                        persons.Add(police);
-                        break;
+                nameNumber = rnd.Next(0, nameList.Count);
+                Thief thief = new Thief();
+                thief.InitializePerson(board);
+                thief.Lastname = nameList[nameNumber];
+                nameList.RemoveAt(nameNumber);
+                persons.Add(thief);
 
-                    case 1:
-                        Thief thief = new Thief();
-                        thief.InitializePerson(board);
-                        thief.Lastname = nameList[nameNumber];
-                        nameList.RemoveAt(nameNumber);
-                        persons.Add(thief);
-                        break;
+            }
+            for (int i = 0; i < 15; i++)
+            {
+                nameNumber = rnd.Next(0, nameList.Count);
+                Police police = new Police();
+                police.InitializePerson(board);
+                police.Lastname = nameList[nameNumber];
+                nameList.RemoveAt(nameNumber);
+                persons.Add(police);
 
-                    case 2:
-                        Citizen citizen = new Citizen();
-                        citizen.InitializePerson(board);
-                        citizen.Lastname = nameList[nameNumber];
-                        nameList.RemoveAt(nameNumber);
-                        persons.Add(citizen);
-                        break;
-                }
+            }
+            
+            for (int i = 0; i < 10; i++)
+            {
+                nameNumber = rnd.Next(0, nameList.Count);
+                Citizen citizen = new Citizen();
+                citizen.InitializePerson(board);
+                citizen.Lastname = nameList[nameNumber];
+                nameList.RemoveAt(nameNumber);
+                persons.Add(citizen);
+
             }
             return persons;
 

@@ -25,14 +25,14 @@ namespace TjuvOchPolis
             }
             if (NewConversation)
             {
-                Thread.Sleep(3000);
+                Thread.Sleep(2500);
                 NewConversation = false;
             }
         }
 
         public void CheckListLength()
         {
-            int listLength = 4;
+            int listLength = 15;
 
             if (Conversations.Count > listLength)
             {

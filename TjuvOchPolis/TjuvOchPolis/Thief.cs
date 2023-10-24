@@ -19,22 +19,25 @@ namespace TjuvOchPolis
         {
             Type = 'T';
             Loot = new List<Valuable>();
+      
         }
 
         public override string Interact(Person person2)
         {
-            if (person2 is Police)
+            if (person2 is Police police)
             {
                 if (Loot.Count > 0 && !InJail)
                 {
                     InJail = true;
-                    JailTime = DateTime.Now;
+                    police.ConfiscatedLoot.AddRange(Loot);
+                    Loot.Clear();
+                    return "Tjuv " + Lastname + " blir arresterad av polis " + police.Lastname;
                 }
-                return "Tjuv " + Lastname + " pekar finger åt polis " + person2.Lastname;
+                return "Tjuv " + Lastname + " pekar finger åt polis " + police.Lastname;
             }
-            else if (person2 is Thief)
+            else if (person2 is Thief thief)
             {
-                return "Tjuv " + Lastname + " fnissar åt tjuv " + person2.Lastname;
+                return "Tjuv " + Lastname + " fnissar åt tjuv " + thief.Lastname;
             }
             else if (person2 is Citizen citizen)
             {
@@ -42,9 +45,9 @@ namespace TjuvOchPolis
                 {
                     Loot.Add(citizen.Valuables[0]);
                     citizen.Valuables.RemoveAt(0);
-                    return "Tjuv " + Lastname + " rånar medborgare " + person2.Lastname + " på dess " + Loot[Loot.Count - 1];
+                    return "Tjuv " + Lastname + " rånar medborgare " + citizen.Lastname + " på dess " + Loot[Loot.Count - 1].Name;
                 }
-                return "Tjuv " + Lastname + " blir sur på " + person2.Lastname + " som inte har något värdefullt";
+                return "Tjuv " + Lastname + " blir sur på " + citizen.Lastname + " som inte har något värdefullt";
             }
             return "Error tjuv";
         }

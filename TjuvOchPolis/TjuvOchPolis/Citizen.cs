@@ -26,9 +26,9 @@ namespace TjuvOchPolis
 
         public override string Interact(Person person2)
         {
-            if (person2 is Police)
+            if (person2 is Police police)
             {
-                return "Medborgare " + Lastname + " säger hej till polis " + person2.Lastname;
+                return "Medborgare " + Lastname + " säger hej till polis " + police.Lastname;
             }
             else if (person2 is Thief thief)
             {
@@ -36,13 +36,13 @@ namespace TjuvOchPolis
                 {
                     thief.Loot.Add(Valuables[0]);
                     Valuables.RemoveAt(0);
-                    return "Medborgare " + Lastname + " blir rånad av tjuv " + thief.Lastname + " på dess " + thief.Loot[thief.Loot.Count - 1];
+                    return "Medborgare " + Lastname + " blir rånad av tjuv " + thief.Lastname + " på dess " + thief.Loot[thief.Loot.Count - 1].Name;
                 }
                 return "Medborgare " + Lastname + " tittar oroligt på tjuv " + thief.Lastname + " när denne rotar igenom hens tomma fickor";
             }
-            else if (person2 is Citizen)
+            else if (person2 is Citizen citizen)
             {
-                return "Medborgare " + Lastname + " hälsar på medborgare " + person2.Lastname;
+                return "Medborgare " + Lastname + " hälsar på medborgare " + citizen.Lastname;
             }
             return "Error medborgare";
         }

@@ -11,9 +11,8 @@
             Interactions interactions = new Interactions();
 
             Jail jail = new Jail();
-            
+
             //Console.ForegroundColor = ConsoleColor.Green;
-          
 
             while (true)
             {
