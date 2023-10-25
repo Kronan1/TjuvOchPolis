@@ -19,6 +19,7 @@ namespace TjuvOchPolis
         {
             Type = 'T';
             Loot = new List<Valuable>();
+            Loot.Add(new Valuable("kokain"));
       
         }
 

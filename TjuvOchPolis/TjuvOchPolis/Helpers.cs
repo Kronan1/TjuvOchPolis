@@ -8,7 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Helpers
     {
-        public static char[,] UpdateBoard(char[,] board, List<Person> persons, Jail jail)
+        public static char[,] UpdateBoard(char[,] board)
         {
             //Här rensar vi spelplanen
             char[,] newBoard = new char[board.GetLength(0), board.GetLength(1)];
@@ -21,17 +21,18 @@ namespace TjuvOchPolis
             }
 
             //Här sätter vi in nya personer på spelplanen 
-            foreach (var person in persons)
-            {
-                if (person is Thief thief && thief.InJail)
-                {
-                    jail.JailList.Add(thief);
-                }
-                else
-                {
-                    newBoard[person.Y, person.X] = person.Type;
-                }
-            }
+            //foreach (var person in persons)
+            //{
+            //    if (person is Thief thief && thief.InJail)
+            //    {
+            //        jail.JailList.Add(thief);
+            //    }
+            //    else
+            //    {
+            //        newBoard[person.Y, person.X] = person.Type;
+            //    }
+            //} 
+
             return newBoard;
         }
 
@@ -84,8 +85,16 @@ namespace TjuvOchPolis
 
             }
         }
-        public static void DrawBoard(char[,] board)
+
+        public static void DrawBoard(char[,] board, List<Person> persons)
+
         {
+            foreach (Person person in persons)
+            {
+                board[person.Y, person.X] = person.Type;
+
+            }
+
             for (int i = 0; i < board.GetLength(1) + 2; i++)
             {
                 Console.Write('=');
@@ -98,7 +107,6 @@ namespace TjuvOchPolis
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
                     Console.Write(board[i, j]);
-
                 }
                 Console.Write('|');
                 Console.WriteLine();
@@ -120,7 +128,7 @@ namespace TjuvOchPolis
             }
 
             for (int i = 0; i < persons.Count; i++)
-            {       
+            {
                 for (int j = 0; j < persons.Count; j++)
                 {
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
@@ -129,8 +137,8 @@ namespace TjuvOchPolis
                     }
 
                 }
-                
-                
+
+
             }
 
         }

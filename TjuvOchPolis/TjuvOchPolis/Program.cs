@@ -16,9 +16,10 @@
 
             while (true)
             {
-                board = Helpers.UpdateBoard(board, persons, jail);
-                Helpers.DrawBoard(board);
-                jail.DrawJail();
+                board = Helpers.UpdateBoard(board);
+                jail.Board = Helpers.UpdateBoard(jail.Board);
+                Helpers.DrawBoard(board, persons);
+                Helpers.DrawBoard(jail.Board, jail.JailList);
                 Console.WriteLine();
                 interactions.PrintConversations();
 

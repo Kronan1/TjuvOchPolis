@@ -8,47 +8,47 @@ namespace TjuvOchPolis
 {
     internal class Jail
     {
-        public List<Thief> JailList { get; set; }
-
+        public List<Person> JailList { get; set; }
+        public char[,] Board = new char[4, 20];
         public Jail()
         {
-            JailList = new List<Thief>();
+            JailList = new List<Person>();
         }
 
-        public void DrawJail()
-        {
-            char[,] board = new char[4, 10];
-            for (int i = 0; i < board.GetLength(1) + 2; i++)
-            {
-                Console.Write('=');
-            }
-            Console.WriteLine();
+        //public void DrawJail()
+        //{
+        //    char[,] board = new char[4, 10];
+        //    for (int i = 0; i < board.GetLength(1) + 2; i++)
+        //    {
+        //        Console.Write('=');
+        //    }
+        //    Console.WriteLine();
 
-            for (int i = 0; i < board.GetLength(0); i++)
-            {
-                Console.Write('|');
-                for (int j = 0; j < board.GetLength(1); j++)
-                {
-                    if (board[i, j] is Thief)
-                    {
-                        Console.Write('T');
-                    }
-                    else
-                    {
-                        Console.Write(' ');
-                    }
+        //    for (int i = 0; i < board.GetLength(0); i++)
+        //    {
+        //        Console.Write('|');
+        //        for (int j = 0; j < board.GetLength(1); j++)
+        //        {
+        //            if (board[i, j] is Thief)
+        //            {
+        //                Console.Write('T');
+        //            }
+        //            else
+        //            {
+        //                Console.Write(' ');
+        //            }
 
-                }
-                Console.Write('|');
-                Console.WriteLine();
-            }
+        //        }
+        //        Console.Write('|');
+        //        Console.WriteLine();
+        //    }
 
-            for (int i = 0; i < board.GetLength(1) + 2; i++)
-            {
-                Console.Write('=');
-            }
-            Console.WriteLine();
-        }
+        //    for (int i = 0; i < board.GetLength(1) + 2; i++)
+        //    {
+        //        Console.Write('=');
+        //    }
+        //    Console.WriteLine();
+        //}
 
         public List<Person> PutPeopleInJail(List<Person> persons)
         {
@@ -75,13 +75,14 @@ namespace TjuvOchPolis
             List<Person> prisonersReleased = new List<Person>();
             for (int i = 0; i < JailList.Count; i++)
             {
+                Thief thief = (Thief)JailList[i];
                 DateTime dateTime = DateTime.Now;
-                TimeSpan timeSpan = dateTime - JailList[i].JailTime;
+                TimeSpan timeSpan = dateTime - thief.JailTime;
 
                 if (timeSpan.TotalSeconds > 10)
                 {
-                    JailList[i].InJail = false;
-                    prisonersReleased.Add(JailList[i]);
+                    thief.InJail = false;
+                    prisonersReleased.Add(thief);
                     JailList.RemoveAt(i);
                     i--;
                 }

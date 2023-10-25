@@ -32,7 +32,7 @@ namespace TjuvOchPolis
 
         public void CheckListLength()
         {
-            int listLength = 15;
+            int listLength = 5;
 
             if (Conversations.Count > listLength)
             {
