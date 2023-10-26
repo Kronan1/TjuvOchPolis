@@ -10,6 +10,7 @@
             Console.CursorVisible = false;
             Interactions interactions = new Interactions();
             DateTime datetime = DateTime.Now;
+            Console.BackgroundColor = ConsoleColor.Magenta;
 
             Jail jail = new Jail();
 

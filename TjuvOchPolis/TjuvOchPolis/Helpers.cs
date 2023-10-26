@@ -90,11 +90,6 @@ namespace TjuvOchPolis
         public static void DrawBoard(char[,] board, List<Person> persons)
 
         {
-            if (board.GetLength(0) == 4 && persons.Count > 0)
-            {
-
-                int test = 0;
-            }
 
             foreach (Person person in persons)
             {
@@ -102,18 +97,41 @@ namespace TjuvOchPolis
 
             }
 
+            
+
             for (int i = 0; i < board.GetLength(1) + 2; i++)
             {
                 Console.Write('=');
             }
-            Console.WriteLine();
+
+            if (board.GetLength(1) < 100)
+            {
+                Console.WriteLine("\tHÄLLBYANSTALTEN");
+            }
+            else
+            {
+                Console.WriteLine("\tESKILSTUNA");
+            }
 
             for (int i = 0; i < board.GetLength(0); i++)
             {
                 Console.Write('|');
                 for (int j = 0; j < board.GetLength(1); j++)
                 {
+                    switch (board[i, j])
+                    {
+                        case 'M':
+                            Console.ForegroundColor = ConsoleColor.Green;
+                            break;
+                        case 'P':
+                            Console.ForegroundColor = ConsoleColor.Blue;
+                            break;
+                        case 'T':
+                            Console.ForegroundColor = ConsoleColor.Red;
+                            break;
+                    }
                     Console.Write(board[i, j]);
+                    Console.ForegroundColor = ConsoleColor.White;
                 }
                 Console.Write('|');
                 Console.WriteLine();
@@ -177,7 +195,6 @@ namespace TjuvOchPolis
             }
             interactions.Conversations.Add(conversation);
             interactions.NewConversation = true;
-            interactions.CheckListLength();
         }
 
         public static List<string> NameList()

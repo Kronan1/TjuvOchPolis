@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.VisualBasic;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,10 +20,13 @@ namespace TjuvOchPolis
         }
         public void PrintConversations()
         {
+            CheckListLength();
             foreach (var conversation in Conversations)
             {
+                Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.WriteLine(conversation);
             }
+            Console.ForegroundColor = ConsoleColor.White;
             if (NewConversation)
             {
                 Thread.Sleep(2500);

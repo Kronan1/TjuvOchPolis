@@ -13,7 +13,7 @@ namespace TjuvOchPolis
 
         public Citizen() 
         {
-            Type = 'C';
+            Type = 'M';
             Valuables = new List<Valuable>()
             {
                 new Valuable("klocka"),
