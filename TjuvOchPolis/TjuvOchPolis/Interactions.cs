@@ -13,6 +13,9 @@ namespace TjuvOchPolis
 
         public bool NewConversation { get; set; }
 
+        public int Robberies { get; set; }
+        public int Arrested { get; set; }
+
         public Interactions()
         {
             Conversations = new List<string>();

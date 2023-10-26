@@ -10,18 +10,25 @@
             Console.CursorVisible = false;
             Interactions interactions = new Interactions();
             DateTime datetime = DateTime.Now;
-            Console.BackgroundColor = ConsoleColor.Magenta;
-
             Jail jail = new Jail();
+            int numberOfThieves = 0;
 
             //Console.ForegroundColor = ConsoleColor.Green;
+
+            foreach (Person person in persons)
+            {
+                if (person is Thief thief)
+                {
+                    numberOfThieves += 1;
+                }
+            }
 
             while (true)
             {
                 board = Helpers.UpdateBoard(board);
                 jail.Board = Helpers.UpdateBoard(jail.Board);
-                Helpers.DrawBoard(board, persons);
-                Helpers.DrawBoard(jail.Board, jail.JailList);
+                Helpers.DrawBoard(board, persons, interactions, numberOfThieves);
+                Helpers.DrawBoard(jail.Board, jail.JailList, interactions, numberOfThieves);
                 Console.WriteLine();
                 interactions.PrintConversations();
 

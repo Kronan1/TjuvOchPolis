@@ -20,25 +20,11 @@ namespace TjuvOchPolis
                 }
             }
 
-            //Här sätter vi in nya personer på spelplanen 
-            //foreach (var person in persons)
-            //{
-            //    if (person is Thief thief && thief.InJail)
-            //    {
-            //        jail.JailList.Add(thief);
-            //    }
-            //    else
-            //    {
-            //        newBoard[person.Y, person.X] = person.Type;
-            //    }
-            //} 
-
             return newBoard;
         }
 
         public static void Move(List<Person> persons, char[,] board, DateTime datetime)
         {
-
             for (int i = 0; i < persons.Count; i++)
             {
                 switch (persons[i].Direction)
@@ -83,21 +69,16 @@ namespace TjuvOchPolis
                 {
                     persons[i].X = board.GetLength(1) - 1;
                 }
-
             }
         }
 
-        public static void DrawBoard(char[,] board, List<Person> persons)
+        public static void DrawBoard(char[,] board, List<Person> persons, Interactions interactions, int numberOfThieves)
 
         {
-
             foreach (Person person in persons)
             {
                 board[person.Y, person.X] = person.Type;
-
             }
-
-            
 
             for (int i = 0; i < board.GetLength(1) + 2; i++)
             {
@@ -106,7 +87,16 @@ namespace TjuvOchPolis
 
             if (board.GetLength(1) < 100)
             {
-                Console.WriteLine("\tHÄLLBYANSTALTEN");
+                Console.Write("\tHÄLLBYANSTALTEN");
+                Console.ForegroundColor = ConsoleColor.DarkYellow;
+                Console.Write("  Arresterade: " + interactions.Arrested);
+                Console.ForegroundColor = ConsoleColor.DarkCyan;
+                Console.Write("  Rånade: " + interactions.Robberies);
+                Console.ForegroundColor = ConsoleColor.DarkRed;
+                Console.Write("  Fängslade: " + persons.Count);
+                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.WriteLine("  Fria tjuvar: " + (numberOfThieves - persons.Count));
+                Console.ForegroundColor = ConsoleColor.White;
             }
             else
             {
@@ -141,8 +131,8 @@ namespace TjuvOchPolis
             {
                 Console.Write('=');
             }
-            Console.WriteLine();
 
+            Console.WriteLine();
         }
 
         public static void CheckCollision(List<Person> persons, Interactions interactions)
@@ -159,20 +149,15 @@ namespace TjuvOchPolis
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
                     {
                         Helpers.CalculateColission(persons[i], persons[j], interactions);
-                        
+
                         if (persons[i].Direction == persons[j].Direction)
                         {
                             Random rnd = new Random();
                             persons[i].Direction = persons[j].Direction == 0 ? rnd.Next(1, 6) : 0;
-                            int test = 0;
                         }
                     }
-
                 }
-
-
             }
-
         }
 
         public static void CalculateColission(Person person1, Person person2, Interactions interactions)
@@ -184,14 +169,18 @@ namespace TjuvOchPolis
             if (person1 is Police)
             {
                 conversation = person1.Interact(person2);
+                interactions.Arrested += conversation.Contains("arrestera") ? 1 : 0;
             }
             else if (person1 is Thief)
             {
                 conversation = person1.Interact(person2);
+                interactions.Robberies += conversation.Contains("råna") ? 1 : 0;
+                interactions.Arrested += conversation.Contains("arrestera") ? 1 : 0;
             }
             else if (person1 is Citizen)
             {
                 conversation = person1.Interact(person2);
+                interactions.Robberies += conversation.Contains("råna") ? 1 : 0;
             }
             interactions.Conversations.Add(conversation);
             interactions.NewConversation = true;
@@ -271,15 +260,9 @@ namespace TjuvOchPolis
                     Random rnd = new Random();
                     person.Direction = rnd.Next(0, 6);
                 }
-
                 datetime = currentTime;
             }
             return datetime;
-        }
-
-        public static void CheckPath(List<Person> persons)
-        {
-
         }
     }
 }
