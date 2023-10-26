@@ -36,8 +36,9 @@ namespace TjuvOchPolis
             return newBoard;
         }
 
-        public static void Move(List<Person> persons, char[,] board)
+        public static void Move(List<Person> persons, char[,] board, DateTime datetime)
         {
+
             for (int i = 0; i < persons.Count; i++)
             {
                 switch (persons[i].Direction)
@@ -89,6 +90,12 @@ namespace TjuvOchPolis
         public static void DrawBoard(char[,] board, List<Person> persons)
 
         {
+            if (board.GetLength(0) == 4 && persons.Count > 0)
+            {
+
+                int test = 0;
+            }
+
             foreach (Person person in persons)
             {
                 board[person.Y, person.X] = person.Type;
@@ -134,6 +141,13 @@ namespace TjuvOchPolis
                     if (persons[i].X == persons[j].X && persons[i].Y == persons[j].Y && i != j && !persons[i].PersonsMet.Contains(persons[j]))
                     {
                         Helpers.CalculateColission(persons[i], persons[j], interactions);
+                        
+                        if (persons[i].Direction == persons[j].Direction)
+                        {
+                            Random rnd = new Random();
+                            persons[i].Direction = persons[j].Direction == 0 ? rnd.Next(1, 6) : 0;
+                            int test = 0;
+                        }
                     }
 
                 }
@@ -226,6 +240,29 @@ namespace TjuvOchPolis
             };
 
             return nameList;
+        }
+
+        public static DateTime ChangeDirection(List<Person> persons, DateTime datetime)
+        {
+            DateTime currentTime = DateTime.Now;
+            TimeSpan timeSpan = currentTime - datetime;
+
+            if (timeSpan.TotalSeconds > 30)
+            {
+                foreach (Person person in persons)
+                {
+                    Random rnd = new Random();
+                    person.Direction = rnd.Next(0, 6);
+                }
+
+                datetime = currentTime;
+            }
+            return datetime;
+        }
+
+        public static void CheckPath(List<Person> persons)
+        {
+
         }
     }
 }

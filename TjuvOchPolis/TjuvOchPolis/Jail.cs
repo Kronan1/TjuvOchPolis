@@ -9,7 +9,7 @@ namespace TjuvOchPolis
     internal class Jail
     {
         public List<Person> JailList { get; set; }
-        public char[,] Board = new char[4, 20];
+        public char[,] Board = new char[10, 10];
         public Jail()
         {
             JailList = new List<Person>();
@@ -50,19 +50,22 @@ namespace TjuvOchPolis
         //    Console.WriteLine();
         //}
 
-        public List<Person> PutPeopleInJail(List<Person> persons)
+        public List<Person> PutPeopleInJail(List<Person> persons, Interactions interactions)
         {
             for (int i = 0; i < persons.Count; i++)
             {
                 if (persons[i] is Thief thief && thief.InJail)
                 {
+                    Random rnd = new Random();
+                    thief.X = rnd.Next(0, Board.GetLength(1));
+                    thief.Y = rnd.Next(0, Board.GetLength(0));
                     thief.JailTime = DateTime.Now;
                     JailList.Add(thief);
                     persons.RemoveAt(i);
                     i--;
                 }
             }
-            persons.AddRange(Parole());
+            persons.AddRange(Parole(interactions));
             
             return persons;
 
@@ -70,7 +73,7 @@ namespace TjuvOchPolis
 
         }
 
-        public List<Person> Parole()
+        public List<Person> Parole(Interactions interactions)
         {
             List<Person> prisonersReleased = new List<Person>();
             for (int i = 0; i < JailList.Count; i++)
@@ -79,8 +82,10 @@ namespace TjuvOchPolis
                 DateTime dateTime = DateTime.Now;
                 TimeSpan timeSpan = dateTime - thief.JailTime;
 
-                if (timeSpan.TotalSeconds > 10)
+                if (timeSpan.TotalSeconds > 30)
                 {
+                    interactions.Conversations.Add("Tjuv " + thief.Lastname + " släpptes ur fängelset.");
+                    interactions.NewConversation = true;
                     thief.InJail = false;
                     prisonersReleased.Add(thief);
                     JailList.RemoveAt(i);

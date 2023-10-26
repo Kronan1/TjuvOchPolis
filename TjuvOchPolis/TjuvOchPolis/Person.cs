@@ -76,7 +76,7 @@ namespace TjuvOchPolis
                 persons.Add(police);
 
             }
-            
+
             for (int i = 0; i < 10; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);

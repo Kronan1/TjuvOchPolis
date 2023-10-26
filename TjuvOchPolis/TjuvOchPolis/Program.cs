@@ -9,6 +9,7 @@
             List<Person> persons = Person.CreateList(board, nameList);
             Console.CursorVisible = false;
             Interactions interactions = new Interactions();
+            DateTime datetime = DateTime.Now;
 
             Jail jail = new Jail();
 
@@ -24,8 +25,11 @@
                 interactions.PrintConversations();
 
                 Thread.Sleep(10);
-                Helpers.Move(persons, board);
+                Helpers.Move(persons, board, datetime);
                 Helpers.CheckCollision(persons, interactions);
+                persons = jail.PutPeopleInJail(persons, interactions);
+                Helpers.Move(jail.JailList, jail.Board, datetime);
+                datetime = Helpers.ChangeDirection(persons, datetime);
                 Console.Clear();
 
             }
