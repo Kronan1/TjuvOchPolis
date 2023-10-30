@@ -59,38 +59,6 @@ namespace TjuvOchPolis
 
             }
 
-            //for (int i = 0; i < 30; i++)
-            //{
-            //    Random rnd = new Random();
-            //    int nameNumber = rnd.Next(0, nameList.Count);
-            //    switch (rnd.Next(0, 3))
-            //    {
-            //        case 0:
-            //            Police police = new Police();
-            //            police.InitializePerson(board);
-            //            police.Lastname = nameList[nameNumber];
-            //            nameList.RemoveAt(nameNumber);
-            //            persons.Add(police);
-            //            break;
-
-            //        case 1:
-            //            Thief thief = new Thief();
-            //            thief.InitializePerson(board);
-            //            thief.Lastname = nameList[nameNumber];
-            //            nameList.RemoveAt(nameNumber);
-            //            persons.Add(thief);
-            //            break;
-
-            //        case 2:
-            //            Citizen citizen = new Citizen();
-            //            citizen.InitializePerson(board);
-            //            citizen.Lastname = nameList[nameNumber];
-            //            nameList.RemoveAt(nameNumber);
-            //            persons.Add(citizen);
-            //            break;
-            //    }
-            //}
-
             return persons;
         }
 

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -98,7 +99,7 @@ namespace TjuvOchPolis
                 Console.WriteLine("  Fria tjuvar: " + (numberOfThieves - persons.Count));
                 Console.ForegroundColor = ConsoleColor.White;
             }
-            else if(board.GetLength(1) > 40)
+            else if (board.GetLength(1) > 40)
             {
                 Console.WriteLine("  ESKILSTUNA");
             }
@@ -300,6 +301,44 @@ namespace TjuvOchPolis
                 datetime = currentTime;
             }
             return datetime;
+        }
+
+        public static List<Person> AddPerson(ConsoleKeyInfo key, char[,] board, List<Person> persons)
+        {
+
+            if (!(key.KeyChar == 'm' || key.KeyChar == 't' || key.KeyChar == 'p'))
+            {
+                return persons;
+            }
+
+            Random rnd = new Random();
+            List <String> nameList = NameList();
+            int nameNumber = rnd.Next(0, nameList.Count);
+            switch (key.KeyChar)
+            {
+                case 'm':
+                    Citizen citizen = new Citizen();
+                    citizen.InitializePerson(board);
+                    citizen.Lastname = nameList[nameNumber];
+                    persons.Add(citizen);
+                    break;
+                case 't':
+                    Thief thief = new Thief();
+                    thief.InitializePerson(board);
+                    thief.Lastname = nameList[nameNumber];
+                    persons.Add(thief);
+                    break;
+                case 'p':
+                    Police police = new Police();
+                    police.InitializePerson(board);
+                    police.Lastname = nameList[nameNumber];
+                    persons.Add(police);
+                    break;
+            }
+
+            return persons;
+
+
         }
     }
 }

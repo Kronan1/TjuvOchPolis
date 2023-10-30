@@ -16,16 +16,23 @@
 
             //Console.ForegroundColor = ConsoleColor.Green;
 
-            foreach (Person person in persons)
-            {
-                if (person is Thief thief)
-                {
-                    numberOfThieves += 1;
-                }
-            }
 
             while (true)
             {
+                numberOfThieves = 0;
+
+                foreach (Person person in jail.JailList)
+                {
+                    numberOfThieves ++;
+                }
+                foreach (Person person in persons)
+                {
+                    if (person is Thief thief)
+                    {
+                        numberOfThieves += 1;
+                    }
+                }
+
                 board = Helpers.UpdateBoard(board);
                 jail.Board = Helpers.UpdateBoard(jail.Board);
                 poorhouse.Board = Helpers.UpdateBoard(poorhouse.Board);
@@ -44,6 +51,12 @@
                 Helpers.Move(poorhouse.PoorhouseList, poorhouse.Board, datetime);
                 datetime = Helpers.ChangeDirection(persons, datetime);
                 Console.Clear();
+
+                if (Console.KeyAvailable)
+                {
+                    ConsoleKeyInfo key = Console.ReadKey();
+                    persons = Helpers.AddPerson(key, board, persons);
+                }
 
             }
 
