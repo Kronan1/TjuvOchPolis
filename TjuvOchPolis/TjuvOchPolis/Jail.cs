@@ -8,12 +8,8 @@ namespace TjuvOchPolis
 {
     internal class Jail
     {
-        public List<Person> JailList { get; set; }
+        public List<Person> JailList { get; set; } = new List<Person>();
         public char[,] Board = new char[4, 20];
-        public Jail()
-        {
-            JailList = new List<Person>();
-        }
 
         public List<Person> PutPeopleInJail(List<Person> persons, Interactions interactions)
         {

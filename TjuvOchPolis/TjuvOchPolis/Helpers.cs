@@ -85,22 +85,29 @@ namespace TjuvOchPolis
                 Console.Write('=');
             }
 
-            if (board.GetLength(1) < 100)
+            if (board.GetLength(1) < 40)
             {
-                Console.Write("\tHÄLLBYANSTALTEN");
+                Console.Write("  HÄLLBYANSTALTEN");
                 Console.ForegroundColor = ConsoleColor.DarkYellow;
                 Console.Write("  Arresterade: " + interactions.Arrested);
                 Console.ForegroundColor = ConsoleColor.DarkCyan;
                 Console.Write("  Rånade: " + interactions.Robberies);
                 Console.ForegroundColor = ConsoleColor.DarkRed;
                 Console.Write("  Fängslade: " + persons.Count);
-                Console.ForegroundColor = ConsoleColor.DarkGreen;
+                Console.ForegroundColor = ConsoleColor.DarkMagenta;
                 Console.WriteLine("  Fria tjuvar: " + (numberOfThieves - persons.Count));
                 Console.ForegroundColor = ConsoleColor.White;
             }
+            else if(board.GetLength(1) > 40)
+            {
+                Console.WriteLine("  ESKILSTUNA");
+            }
             else
             {
-                Console.WriteLine("\tESKILSTUNA");
+                Console.Write("  FATTIGHUSET");
+                Console.ForegroundColor = ConsoleColor.Green;
+                Console.WriteLine("  Fattiga : " + persons.Count);
+                Console.ForegroundColor = ConsoleColor.White;
             }
 
             for (int i = 0; i < board.GetLength(0); i++)

@@ -36,6 +36,11 @@ namespace TjuvOchPolis
             }
             else if (person2 is Citizen citizen)
             {
+                if( citizen.Valuables.Count == 0)
+                {
+                    citizen.InPoorhouse = true;
+                    return "Polis " + Lastname + " stoppar medborgare " + citizen.Lastname + " i fattighuset";
+                }
                 return "Polis " + Lastname + " hälsar på medborgare " + citizen.Lastname;
             }
 

@@ -10,16 +10,17 @@ namespace TjuvOchPolis
     internal class Citizen : Person 
     {
         public List<Valuable> Valuables { get; set; }
+        public bool InPoorhouse { get; set; }
 
         public Citizen() 
         {
             Type = 'M';
             Valuables = new List<Valuable>()
             {
-                new Valuable("klocka"),
-                new Valuable("nycklar"),
-                new Valuable("mobil"),
-                new Valuable("pengar")
+                //new Valuable("klocka"),
+                //new Valuable("nycklar"),
+                //new Valuable("mobil"),
+                //new Valuable("pengar")
             };
         
         }
@@ -28,6 +29,11 @@ namespace TjuvOchPolis
         {
             if (person2 is Police police)
             {
+                if(Valuables.Count == 0)
+                {
+                    InPoorhouse = true;
+                    return "Medborgare " + Lastname + " blir stoppad av polis " + police.Lastname + " och skickad till fattighuset";
+                }
                 return "Medborgare " + Lastname + " säger hej till polis " + police.Lastname;
             }
             else if (person2 is Thief thief)
