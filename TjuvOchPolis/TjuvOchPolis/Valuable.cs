@@ -15,7 +15,5 @@ namespace TjuvOchPolis
         {
             Name = name;
         }
-
-
     }
 }

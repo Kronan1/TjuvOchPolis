@@ -26,8 +26,8 @@ namespace TjuvOchPolis
                     i--;
                 }
             }
+
             persons.AddRange(Parole(interactions));
-            
             return persons;
         }
 
@@ -50,8 +50,8 @@ namespace TjuvOchPolis
                     i--;
                 }
             }
-            return prisonersReleased;
 
+            return prisonersReleased;
         }
     }
 }

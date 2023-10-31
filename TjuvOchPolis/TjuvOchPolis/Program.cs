@@ -14,28 +14,15 @@
             Poorhouse poorhouse = new Poorhouse();
             int numberOfThieves = 0;
 
-            //Console.ForegroundColor = ConsoleColor.Green;
-
-
             while (true)
             {
-                numberOfThieves = 0;
-
-                foreach (Person person in jail.JailList)
-                {
-                    numberOfThieves ++;
-                }
-                foreach (Person person in persons)
-                {
-                    if (person is Thief thief)
-                    {
-                        numberOfThieves += 1;
-                    }
-                }
+                numberOfThieves = Helpers.UpdateNumberOfThieves(persons);
+                numberOfThieves += Helpers.UpdateNumberOfThieves(jail.JailList);
 
                 board = Helpers.UpdateBoard(board);
                 jail.Board = Helpers.UpdateBoard(jail.Board);
                 poorhouse.Board = Helpers.UpdateBoard(poorhouse.Board);
+
                 Helpers.DrawBoard(board, persons, interactions, numberOfThieves);
                 Helpers.DrawBoard(jail.Board, jail.JailList, interactions, numberOfThieves);
                 Helpers.DrawBoard(poorhouse.Board, poorhouse.PoorhouseList, interactions, numberOfThieves);
@@ -45,6 +32,7 @@
                 Thread.Sleep(10);
                 Helpers.Move(persons, board, datetime);
                 Helpers.CheckCollision(persons, interactions);
+
                 persons = jail.PutPeopleInJail(persons, interactions);
                 persons = poorhouse.PutPeopleInPoorhouse(persons, interactions);
                 Helpers.Move(jail.JailList, jail.Board, datetime);

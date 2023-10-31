@@ -19,8 +19,6 @@ namespace TjuvOchPolis
         {
             Type = 'T';
             Loot = new List<Valuable>();
-            Loot.Add(new Valuable("kokain"));
-      
         }
 
         public override string Interact(Person person2)

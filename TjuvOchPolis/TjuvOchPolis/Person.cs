@@ -19,15 +19,13 @@ namespace TjuvOchPolis
         public List<Person> PersonsMet { get; set; }
         public string Lastname { get; set; }
 
-
         public static List<Person> CreateList(char[,] board, List<string> nameList)
         {
             List<Person> persons = new List<Person>();
-            
             Random rnd = new Random();
             int nameNumber = 0;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Citizen citizen = new Citizen();
@@ -35,10 +33,9 @@ namespace TjuvOchPolis
                 citizen.Lastname = nameList[nameNumber];
                 nameList.RemoveAt(nameNumber);
                 persons.Add(citizen);
-
             }
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 15; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Thief thief = new Thief();
@@ -46,8 +43,8 @@ namespace TjuvOchPolis
                 thief.Lastname = nameList[nameNumber];
                 nameList.RemoveAt(nameNumber);
                 persons.Add(thief);
-
             }
+
             for (int i = 0; i < 15; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
@@ -56,7 +53,6 @@ namespace TjuvOchPolis
                 police.Lastname = nameList[nameNumber];
                 nameList.RemoveAt(nameNumber);
                 persons.Add(police);
-
             }
 
             return persons;

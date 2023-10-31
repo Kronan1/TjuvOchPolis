@@ -11,7 +11,6 @@ namespace TjuvOchPolis
     {
         public static char[,] UpdateBoard(char[,] board)
         {
-            //Här rensar vi spelplanen
             char[,] newBoard = new char[board.GetLength(0), board.GetLength(1)];
             for (var i = 0; i < newBoard.GetLength(0); i++)
             {
@@ -52,7 +51,6 @@ namespace TjuvOchPolis
                         break;
                 }
 
-                //Ser till så att koden inte kraschar när en person går utanför spelplanen. Tänk snake
                 if (persons[i].Y > board.GetLength(0) - 1)
                 {
                     persons[i].Y = 0;
@@ -198,94 +196,122 @@ namespace TjuvOchPolis
         {
             List<string> nameList = new List<string>()
              {
-            "Andersson",
-            "Pettersson",
-            "Forsberg",
-            "Sedin",
-            "Bästerman",
-            "Karlsson",
-            "Sjödin",
-            "Ekman",
-            "Larsson",
-            "Lundqvist",
-            "Ali",
-            "Bengtsson",
-            "Hult",
-            "Johansson",
-            "Nilsson",
-            "Viberg",
-            "Varberg",
-            "Gustafsson",
-            "Fröjd",
-            "Lilja",
-            "Bergström",
-            "Ström",
-            "Strömberg",
-            "Lundberg",
-            "Ekdahl",
-            "Svensson",
-            "Isaksson",
-            "Arvidsson",
-            "Elm",
-            "Mellberg",
-            "Thelin",
-            "Stenberg",
-            "Bagge",
-            "Wahlgren",
-            "Ingrosso",
-            "Brolin",
-            "Alm",
-            "Berghagen",
-            "Book",
-            "Ulveus",
-            "Ibrahimovic",
-            "Eriksdotter",
-            "Uggla",
-            "Guldkula",
-            "Natt och dag",
-            "Von Ribbing",
-            "Hellström",
-            "Gadd",
-            "Hallin",
-            "Kling",
-            "Klang",
-            "Eastwood",
-            "Wagner",
-            "Smith",
-            "Johnson",
-            "Williams",
-            "Brown",
-            "Davis",
-            "Miller",
-            "Jones",
-            "Garcia",
-            "Rodriguez",
-            "Martinez",
-            "Hernandez",
-            "Lopez",
-            "Gonzalez",
-            "Wilson",
-            "Anderson",
-            "Thomas",
-            "White",
-            "Moore",
-            "Taylor",
-            "Jackson",
-            "Harris",
-            "Martin",
-            "Thompson",
-            "Robinson",
-            "Clark",
-            "Lewis",
-            "Lee",
-            "Walker",
-            "Hall"
-        };
+                "Korhonen",
+                "Virtanen",
+                "Mäkinen",
+                "Nieminen",
+                "Hämäläinen",
+                "Laine",
+                "Koskinen",
+                "Järvinen",
+                "Lehtonen",
+                "Heikkinen",
+                "Andersen",
+                "Nielsen",
+                "Hansen",
+                "Jensen",
+                "Pedersen",
+                "Rasmussen",
+                "Christensen",
+                "Larsen",
+                "Madsen",
+                "Olsen",
+                "Johansen",
+                "Hansen",
+                "Andersen",
+                "Olsen",
+                "Larsen",
+                "Pedersen",
+                "Nilsen",
+                "Kristiansen",
+                "Torgersen",
+                "Pettersen",
+                "Andersson",
+                "Pettersson",
+                "Forsberg",
+                "Sedin",
+                "Bästerman",
+                "Karlsson",
+                "Sjödin",
+                "Ekman",
+                "Larsson",
+                "Lundqvist",
+                "Ali",
+                "Bengtsson",
+                "Hult",
+                "Johansson",
+                "Nilsson",
+                "Viberg",
+                "Varberg",
+                "Gustafsson",
+                "Fröjd",
+                "Lilja",
+                "Bergström",
+                "Ström",
+                "Strömberg",
+                "Lundberg",
+                "Ekdahl",
+                "Svensson",
+                "Isaksson",
+                "Arvidsson",
+                "Elm",
+                "Mellberg",
+                "Thelin",
+                "Stenberg",
+                "Bagge",
+                "Wahlgren",
+                "Ingrosso",
+                "Brolin",
+                "Alm",
+                "Berghagen",
+                "Book",
+                "Ulveus",
+                "Ibrahimovic",
+                "Eriksdotter",
+                "Uggla",
+                "Guldkula",
+                "Natt och dag",
+                "Von Ribbing",
+                "Hellström",
+                "Gadd",
+                "Hallin",
+                "Kling",
+                "Klang",
+                "Eastwood",
+                "Wagner",
+                "Smith",
+                "Johnson",
+                "Williams",
+                "Brown",
+                "Davis",
+                "Miller",
+                "Jones",
+                "Garcia",
+                "Rodriguez",
+                "Martinez",
+                "Hernandez",
+                "Lopez",
+                "Gonzalez",
+                "Wilson",
+                "Anderson",
+                "Thomas",
+                "White",
+                "Moore",
+                "Taylor",
+                "Jackson",
+                "Harris",
+                "Martin",
+                "Thompson",
+                "Robinson",
+                "Clark",
+                "Lewis",
+                "Lee",
+                "Walker",
+                "Hall"
+            };
 
             return nameList;
         }
-
-
         public static DateTime ChangeDirection(List<Person> persons, DateTime datetime)
         {
             DateTime currentTime = DateTime.Now;
@@ -312,7 +338,7 @@ namespace TjuvOchPolis
             }
 
             Random rnd = new Random();
-            List <String> nameList = NameList();
+            List<String> nameList = NameList();
             int nameNumber = rnd.Next(0, nameList.Count);
             switch (key.KeyChar)
             {
@@ -337,8 +363,21 @@ namespace TjuvOchPolis
             }
 
             return persons;
+        }
+        public static int UpdateNumberOfThieves(List<Person> persons)
+        {
+            int count = 0;
 
-
+            foreach (Person person in persons)
+            {
+                if (person is Thief thief)
+                {
+                    count++;
+                }
+            }
+            return count;
         }
     }
 }
+
+

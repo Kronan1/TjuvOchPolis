@@ -17,12 +17,11 @@ namespace TjuvOchPolis
             Type = 'M';
             Valuables = new List<Valuable>()
             {
-                //new Valuable("klocka"),
-                //new Valuable("nycklar"),
-                //new Valuable("mobil"),
-                //new Valuable("pengar")
+                new Valuable("klocka"),
+                new Valuable("nycklar"),
+                new Valuable("mobil"),
+                new Valuable("pengar")
             };
-        
         }
 
         public override string Interact(Person person2)
