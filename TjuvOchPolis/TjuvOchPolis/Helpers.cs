@@ -49,6 +49,14 @@ namespace TjuvOchPolis
                         persons[i].X--;
                         persons[i].Y--;
                         break;
+                    case 6:
+                        persons[i].Y++;
+                        persons[i].X--;
+                        break;
+                    case 7:
+                        persons[i].Y--;
+                        persons[i].X++;
+                        break;
                 }
 
                 if (persons[i].Y > board.GetLength(0) - 1)
@@ -159,7 +167,7 @@ namespace TjuvOchPolis
                         if (persons[i].Direction == persons[j].Direction)
                         {
                             Random rnd = new Random();
-                            persons[i].Direction = persons[j].Direction == 0 ? rnd.Next(1, 6) : 0;
+                            persons[i].Direction = persons[j].Direction == 0 ? rnd.Next(1, 8) : 0;
                         }
                     }
                 }
@@ -314,17 +322,14 @@ namespace TjuvOchPolis
         }
         public static DateTime ChangeDirection(List<Person> persons, DateTime datetime)
         {
-            DateTime currentTime = DateTime.Now;
-            TimeSpan timeSpan = currentTime - datetime;
-
-            if (timeSpan.TotalSeconds > 30)
+            if ((DateTime.Now - datetime).TotalSeconds > 30)
             {
                 foreach (Person person in persons)
                 {
                     Random rnd = new Random();
-                    person.Direction = rnd.Next(0, 6);
+                    person.Direction = rnd.Next(0, 8);
                 }
-                datetime = currentTime;
+                datetime = DateTime.Now;
             }
             return datetime;
         }

@@ -9,23 +9,25 @@ namespace TjuvOchPolis
     internal class Person
     {
         public int X { get; set; }
-
         public int Y { get; set; }
-
         public int Direction { get; set; }
-
         public char Type { get; set; }
-
         public List<Person> PersonsMet { get; set; }
         public string Lastname { get; set; }
 
+        public Person()
+        {
+            Random random = new Random();
+            Direction = random.Next(0, 8);
+            PersonsMet = new List<Person>();
+        }
         public static List<Person> CreateList(char[,] board, List<string> nameList)
         {
             List<Person> persons = new List<Person>();
             Random rnd = new Random();
             int nameNumber = 0;
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 20; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Citizen citizen = new Citizen();
@@ -35,7 +37,7 @@ namespace TjuvOchPolis
                 persons.Add(citizen);
             }
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 30; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Thief thief = new Thief();
@@ -45,7 +47,7 @@ namespace TjuvOchPolis
                 persons.Add(thief);
             }
 
-            for (int i = 0; i < 15; i++)
+            for (int i = 0; i < 20; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Police police = new Police();
@@ -63,13 +65,6 @@ namespace TjuvOchPolis
             Random rand = new Random();
             X = rand.Next(0, board.GetLength(1));
             Y = rand.Next(0, board.GetLength(0));
-        }
-
-        public Person()
-        {
-            Random random = new Random();
-            Direction = random.Next(0, 6);
-            PersonsMet = new List<Person>();
         }
 
         public virtual string Interact(Person person2)

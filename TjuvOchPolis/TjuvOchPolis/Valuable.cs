@@ -7,7 +7,6 @@ using System.Threading.Tasks;
 namespace TjuvOchPolis
 {
     internal class Valuable
-
     {
         public string Name { get; set; }
 
