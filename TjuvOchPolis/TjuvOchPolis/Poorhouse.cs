@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 
 namespace TjuvOchPolis
 {
+
     internal class Poorhouse
     {
         public List<Person> PoorhouseList { get; set; } = new List<Person>();

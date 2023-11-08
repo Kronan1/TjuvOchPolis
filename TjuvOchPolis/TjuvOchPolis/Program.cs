@@ -41,6 +41,7 @@
                     city.Persons = Helpers.AddPerson(key, city.Board, city.Persons);
                 }
 
+
                 Console.Clear();
             }
         }

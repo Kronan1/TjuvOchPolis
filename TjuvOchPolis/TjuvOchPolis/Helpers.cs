@@ -9,6 +9,7 @@ namespace TjuvOchPolis
 {
     internal class Helpers
     {
+
         public static char[,] UpdateBoard(char[,] board)
         {
             char[,] newBoard = new char[board.GetLength(0), board.GetLength(1)];

@@ -10,7 +10,6 @@ namespace TjuvOchPolis
     internal class Interactions
     {
         public List<string> Conversations { get; set; }
-
         public bool NewConversation { get; set; }
 
         public int Robberies { get; set; }

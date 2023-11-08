@@ -8,6 +8,7 @@ namespace TjuvOchPolis
 {
     internal class Valuable
     {
+
         public string Name { get; set; }
 
         public Valuable(string name)

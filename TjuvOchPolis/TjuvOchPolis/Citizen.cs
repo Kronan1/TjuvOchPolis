@@ -9,6 +9,7 @@ namespace TjuvOchPolis
 {
     internal class Citizen : Person 
     {
+
         public List<Valuable> Valuables { get; set; }
         public bool InPoorhouse { get; set; }
 

@@ -14,6 +14,7 @@ namespace TjuvOchPolis
         public int NumberOfThieves { get; set; } = 0;
         public List<Person> Persons { get; set; } = new List<Person>();
 
+
         public City()
         {
             Persons = Person.CreateList(Board, NameList);
