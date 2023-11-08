@@ -9,7 +9,6 @@ namespace TjuvOchPolis
 {
     internal class Thief : Person
     {
-
         public List<Valuable> Loot { get; set; }
         public bool InJail { get; set; }
         public DateTime JailTime { get; set; }
