@@ -27,7 +27,7 @@ namespace TjuvOchPolis
             Random rnd = new Random();
             int nameNumber = 0;
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 15; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Citizen citizen = new Citizen();
@@ -47,7 +47,7 @@ namespace TjuvOchPolis
                 persons.Add(thief);
             }
 
-            for (int i = 0; i < 20; i++)
+            for (int i = 0; i < 15; i++)
             {
                 nameNumber = rnd.Next(0, nameList.Count);
                 Police police = new Police();

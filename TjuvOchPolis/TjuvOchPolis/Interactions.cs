@@ -31,7 +31,7 @@ namespace TjuvOchPolis
             Console.ForegroundColor = ConsoleColor.White;
             if (NewConversation)
             {
-                Thread.Sleep(1500);
+                Thread.Sleep(2000);
                 NewConversation = false;
             }
         }

@@ -19,8 +19,8 @@ namespace TjuvOchPolis
             {
                 new Valuable("klocka"),
                 new Valuable("nycklar"),
-                new Valuable("mobil"),
-                new Valuable("pengar")
+                //new Valuable("mobil"),
+                //new Valuable("pengar")
             };
         }
 

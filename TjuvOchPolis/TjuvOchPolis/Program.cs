@@ -25,7 +25,7 @@
                 Console.WriteLine();
                 interactions.PrintConversations();
 
-                Thread.Sleep(100);
+                Thread.Sleep(10);
                 Helpers.Move(city.Persons, city.Board, city.Datetime);
                 Helpers.CheckCollision(city.Persons, interactions);
 
